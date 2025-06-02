@@ -1,0 +1,169 @@
+/* Grundlayout */  
+body {  
+  color: #0F1E37;  
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
+  margin: 0;  
+  padding: 0;  
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box
+}
+
+/* Zentrierung und Maximalbreite für alle Haupt-Container */  
+body > *,  
+h1, h2, h3, h4, h5, h6,  
+p, ul, ol, table, blockquote, pre, code, img, svg,  
+div, section, article, aside, nav, hr, dl, dt, dd, figure, details, summary {
+  max-width: 980px;  
+  margin-left: auto;  
+  margin-right: auto;  
+  box-sizing: border-box;  
+}
+
+table {
+  width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Überschriften */  
+h1 {  
+  font-size: 2.2rem;  
+  color: #0F1E37;  
+  border-bottom: 3px solid #BE9B55;  
+  padding-bottom: 0.4rem;  
+  margin-bottom: 1.5rem;  
+  margin-top: 2.2rem;  
+}  
+h2 {  
+  font-size: 1.6rem;  
+  color: #0F1E37;  
+  margin-top: 2.2rem;  
+}  
+h3 {  
+  font-size: 1.2rem;  
+  color: #BE9B55;  
+  margin-top: 1.5rem;  
+}  
+h4, h5, h6 {  
+  font-size: 1rem;  
+  color: #0F1E37;  
+  margin-top: 1.2rem;  
+}
+
+/* Links */  
+a {  
+  color: #BE9B55;  
+  text-decoration: none;  
+  border-bottom: 1px dotted #BE9B55;  
+  transition: color 0.2s, border-bottom 0.2s;  
+}  
+a:hover, a:focus {  
+  color: #0F1E37;  
+  border-bottom: 2px solid #0F1E37;  
+}
+
+/* Tabellen */  
+table {  
+  width: 100%;  
+  border-collapse: separate;  
+  border-spacing: 0;  
+  background: #fff;  
+  box-shadow: 0 2px 12px rgba(15,30,55,0.06);  
+  border-radius: 10px;  
+  overflow: hidden;  
+  padding-right: 0rem;  
+}  
+th, td {  
+  padding: 0.9rem 1.2rem;  
+  text-align: left;  
+  border-bottom: 1px solid #e0e6ed;  
+}  
+th {  
+  background: #0F1E37 ;  
+  color: #fff;  
+  font-weight: 700;  
+  letter-spacing: 0.03em;  
+  border-bottom: 2px solid #BE9B55;  
+}  
+tr:nth-child(even) td {  
+  background: #f8f6f2;  
+}  
+tr:hover td {  
+  background: #fffbe6;  
+  transition: background 0.2s;  
+}  
+tr:last-child td {  
+  border-bottom: none;  
+}  
+table {  
+  border: 1.5px solid #BE9B55;  
+}
+
+/* Tabellenränder abrunden */  
+table, th:first-child, td:first-child {  
+  border-top-left-radius: 10px;  
+}  
+table, th:last-child, td:last-child {  
+  border-top-right-radius: 10px;  
+}
+
+/* Blockquotes */  
+blockquote {  
+  border-left: 5px solid #BE9B55;  
+  background: #f8f6f2;  
+  color: #0F1E37;  
+  padding: 1rem 1.5rem;  
+  border-radius: 0 6px 6px 0;  
+  font-style: italic;   
+}
+
+/* Code & Pre */  
+code, pre {  
+  font-family: 'Fira Mono', 'Consolas', 'Monaco', monospace;  
+  background: #f0f4f8;  
+  color: #0F1E37;  
+  border-radius: 4px;  
+  padding: 0.2em 0.4em;  
+}  
+pre {  
+  display: block;  
+  padding: 1em;  
+  overflow-x: auto;  
+  background: #f0f4f8;  
+}
+
+/* Bilder und SVG */  
+img, svg {  
+  max-width: 100%;  
+  max-height: 500px;  
+  border-radius: 8px;  
+  background: #f0f4f8; 
+  margin: 0 auto;
+  display: block;
+}  
+svg {  
+  display: block;  
+  max-width: 500px;  
+  width: 100%;  
+  height: auto;  
+  margin-left: auto;  
+  margin-right: auto;  
+}
+
+/* Responsive Anpassungen */  
+@media (max-width: 900px) {  
+  h1, h2, h3, h4, h5, h6,  
+  p, ul, ol, table, blockquote, pre, img, svg {  
+    max-width: 98vw;  
+    padding-left: 0.5rem;  
+    padding-right: 0.5rem;  
+  }  
+  table, th, td {  
+    font-size: 0.95em;  
+  }  
+  h1 { font-size: 1.5rem; }  
+  h2 { font-size: 1.2rem; }  
+}  

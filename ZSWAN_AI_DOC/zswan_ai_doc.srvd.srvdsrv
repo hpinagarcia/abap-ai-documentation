@@ -1,0 +1,4 @@
+@EndUserText.label: 'SWAN AI Documentation: Main service'
+define service ZSWAN_AI_DOC {
+  expose ZSWAN_CE_AI_DOC_OBJECT as objectSet;
+}

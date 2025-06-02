@@ -1,0 +1,1754 @@
+{
+  "name": "n8n Workflow - Erweitert",
+  "nodes": [
+    {
+      "parameters": {
+        "fieldToSplitOut": "d.results",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -1040,
+        3910
+      ],
+      "id": "719fba1b-f32a-4ff6-8872-3c44c3ab383e",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "bda52f5d-da23-4da1-a16c-02348785c05c",
+              "leftValue": "={{ $json.obj_name }}",
+              "rightValue": "/DMO/CL_FLIGHT_LEGACY",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -820,
+        3660
+      ],
+      "id": "655c4456-a44a-47b1-8433-c1ebb7c6ce6c",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -600,
+        3660
+      ],
+      "id": "1dd59293-3b00-46e3-b5a7-67d3094e3869",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.object }}",
+                    "rightValue": "CLAS",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "b5357491-10c0-402d-87d0-ece645377e19"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "CLAS"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "83fcb0f2-bb8e-45ca-b986-b3c3009aa306",
+                    "leftValue": "={{ $json.object }}",
+                    "rightValue": "TABL",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "DDIC"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "bd5575b4-16a5-4102-8086-82c50cef91f7",
+                    "leftValue": "{{ $json.object }}",
+                    "rightValue": "TRAN",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "TRAN"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0183ea84-5c7d-4828-abee-64e7bdb1c4ac",
+                    "leftValue": "={{ $json.object }}",
+                    "rightValue": "PROG",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PROG"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "09caf681-ac28-4c52-97e5-8df26cf9b286",
+                    "leftValue": "={{ $json.object }}",
+                    "rightValue": "MSAG",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "MSAG"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a4b87014-a863-4e01-902c-a540f7e262ac",
+                    "leftValue": "={{ $json.object }}",
+                    "rightValue": "FUGR",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "FUGR"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "dcc863cf-2b83-4c07-a280-d27492e6f257",
+                    "leftValue": "={{ $json.object }}",
+                    "rightValue": "INTF",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "=INTF"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7c88b692-6b30-4946-aa35-02c0b196de92",
+                    "leftValue": "={{ $json.object }}",
+                    "rightValue": "TTYP",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "TTYP"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -380,
+        1584
+      ],
+      "id": "89d43061-2cee-499e-b63d-b649386ecf1f",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "formTitle": "Package",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Package Name",
+              "placeholder": "Paket Name eingeben..."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -1700,
+        3910
+      ],
+      "id": "119852e1-e334-416a-8d5b-83abfe062c06",
+      "name": "Package Eingabe",
+      "webhookId": "722a9504-c11e-4380-9bed-bec9dc539a64"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"base_url\": \"https://a4h.kernich.de\",\n  \"sap_client\": \"001\",\n  \"sap_language\": \"EN\",\n  \"out_dir\": \"/tmp\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1480,
+        3910
+      ],
+      "id": "d8569bfc-b227-4dbe-8714-880fc77e427d",
+      "name": "Konstanten"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $('Konstanten').first().json.out_dir }}/docu.md ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        514,
+        3260
+      ],
+      "id": "69cf48e2-7f30-4c48-93dc-311a3f25f568",
+      "name": "MarkDown als Datei speichern"
+    },
+    {
+      "parameters": {
+        "command": "=mmdc -i \"{{ $('Konstanten').first().json.out_dir }}/docu.md\" -o \"{{ $('Konstanten').first().json.out_dir }}/preprocessed.md\" && pandoc \"{{ $('Konstanten').first().json.out_dir }}/preprocessed.md\" -f markdown-implicit_figures -o \"{{ $('Konstanten').first().json.out_dir }}/docu.html\" --embed-resource --standalone --css=\"{{ $('Konstanten').first().json.out_dir }}/style.css\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        890,
+        3260
+      ],
+      "id": "a86ef211-94e6-4c40-94f9-0ca5414f560f",
+      "name": "Pandoc ausführen"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Konstanten').item.json.base_url }}/sap/bc/adt/oo/classes/{{ encodeURIComponent($json.obj_name) }}/source/main",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -160,
+        -78
+      ],
+      "id": "e20a26d5-876c-4180-aa1d-8f5935748f6b",
+      "name": "Klasse abrufen",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "64TPOLOMWauRcZ0t",
+          "name": "A4H KERNICH"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Konstanten').item.json.base_url }}/sap/bc/adt/ddic/structures/{{ encodeURIComponent($json.obj_name) }}/source/main",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -160,
+        2960
+      ],
+      "id": "b563d9b4-6fd8-40c3-bd93-a80d13ca6362",
+      "name": "Tabelle abrufen",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "64TPOLOMWauRcZ0t",
+          "name": "A4H KERNICH"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconsole.log(\"items\", items);\nconst all = items.map(i => i.json)\nconst startPackage = $('Package Eingabe').first().json['Package Name']\n\nlet md = ''\nconst typeLabels = {\n  CLAS: 'Classes',\n  INTF: 'Interfaces',\n  TABL: 'Dictionary Elements',\n  PROG: 'Programs',\n  FUGR: 'Function Groups',\n  TRAN: 'Transactions',\n  ENHO: 'Enhancements',\n  DEVC: 'Packages',\n  DTEL: 'Data Elements',\n  DOMA: 'Domains',\n  MSAG: 'Message class'\n}\n\nconst writeSentence = (sentence) => {\n  if(sentence.trim().endsWith(\".\")) {\n    return sentence;\n  } else {\n    return sentence + \".\";\n  }\n}\n\nconst startPackageObj =  items.map(i => i.json).find(x => x.obj_name === startPackage && x.object === 'DEVC');\nconst data = all.filter(x => x.obj_name !== startPackage && x.object !== 'DEVC');\n\nconst typeOrder = ['CLAS', 'INTF', 'TABL']\n\nconst grouped = {}\n\nfor (const { devclass, object, obj_name, description } of data) {\n  if (!grouped[devclass]) grouped[devclass] = {}\n  if (!grouped[devclass][object]) grouped[devclass][object] = []\n  grouped[devclass][object].push({ obj_name, object, description })\n}\n\nconst countPackages =  items.map(i => i.json).filter(x => x.object === 'DEVC');\nconst countobjects =  items.map(i => i.json).filter(x => x.object !== 'DEVC');\n\nmd += '# Technical documentation of ' + startPackage + '\\n\\n'\n\nif(startPackageObj && startPackageObj.description) {\n  md += writeSentence(startPackageObj.description) + '\\n\\n';\n}\n\nif(countPackages.length > 0) {\nmd += 'This technical documentation contains ' + countPackages.length + ' sub packages and '+ countobjects.length + ' development objects.\\n\\n';\n} else {\n  md += 'This technical documentation contains ' + countobjects.length + ' development objects.\\n\\n';\n}\n\nfor (const pkg in grouped) {\n  md += '## 📦 ' + pkg + '\\n'\n\n  const allobjects = Object.values(grouped[pkg]).flat()\n  const firstWithdescription = allobjects.find(obj => obj.description)\n  if (firstWithdescription) {\n    md += writeSentence(firstWithdescription.description) + '\\n\\n'\n  }\n\n  const sortedTypes = Object.keys(grouped[pkg]).sort((a, b) => {\n    const idxA = typeOrder.indexOf(a) === -1 ? 999 : typeOrder.indexOf(a)\n    const idxB = typeOrder.indexOf(b) === -1 ? 999 : typeOrder.indexOf(b)\n    return idxA - idxB || a.localeCompare(b)\n  })\n\n  for (const type of sortedTypes) {\n    const label = typeLabels[type] || type\n    md += '### ' + label + '\\n'\n    const entries = grouped[pkg][type].sort((a, b) => a.obj_name.localeCompare(b.obj_name))\n    for (const { obj_name, object, description } of entries) {\n      const name = `**${obj_name}**`;\n      md += '- ' + name + (description ? ' - ' + description : '') + '\\n';\n    }\n    md += '\\n'\n  }\n}\n\nreturn [{ json: { toc: md, package: startPackage } }]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -600,
+        4210
+      ],
+      "id": "0e00a3a0-8885-48e6-87cc-5a58a9ad5982",
+      "name": "Inhaltsverzeichnis"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        148,
+        3080
+      ],
+      "id": "2e095d5f-d93c-4219-aeee-d8d6f8c77663",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "Cty9mrXPUK5TfyYs",
+          "name": "OpenAI Key Mario"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        900,
+        480
+      ],
+      "id": "48ae3877-2254-4090-a6d1-e45456d06515",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "Cty9mrXPUK5TfyYs",
+          "name": "OpenAI Key Mario"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are an SAP ABAP Expert.\n\nYour task is to write technical documentation in Markdown for the given ABAP class.\n\n**General Rules:**  \n1. Describe the code in clear, human-readable language.  \n2. Do not invent any logic or parameters not present in the code.  \n3. Follow the output structure as shown in the example.\n5. Do not add additional headlines\n4. If you are unsure about any aspect of the code or if information is missing, ask for clarification.\n\n**SAP-specific Aspects:**    \n- Explicitly mention the use of SAP exception classes (e.g., `CX_*`).  \n- If the code accesses SAP tables, transactions, or uses SAP-specific logic, mention this in the documentation.\n\n**Class Header:**\n1. Describe the general use case of the class in 1-5 sentences, depending on its complexity.\n2. Create a class Diagramm with the \"mermaid\" syntax\n- Remove the slashes (\"/\") from the namespace and connect the namespace and object name with a hyphen. Example: /DMO/TEST → DMO-TEST\n- The technical name (with \"/\") should be shown in quotes in the diagram.\n- Static methods are marked with a $ suffix.\n- Abstract methods are marked with a * suffix.\n- Add the parent class and all used interfaces as \"class\".\n- Always place <<interface>> inside the curly brackets of the interface declaration.\n\n**Mermaid Example:** \n```mermaid  \n\nclassDiagram\n\n    class SWAN-CL_CUSTOM_CLASS[\"/SWAN/CL_CUSTOM_CLASS\"]{    \n\n      +CONSTRUCTOR(iv_event: TPDA_EVENT_TYPE, iv_index: SYTABIX)  \n\n      +SET_DURATION() /SWAN/DE_BASE_APPL_DURATION  \n\n      -GS_APPL: /SWAN/S_BASE_APPL  \n\n      +EXAMPLE_STATIC() string$  \n\n      +EXAMPLE_ABSTRACT() string*  \n\n    }\n\n    class SWAN-IF_CUSTOM[\"/SWAN/IF_CUSTOM\"]{\n      <<interface>>\n    }\n\n    class SWAN-IF_BASE[\"/SWAN/IF_BASE\"]{\n      <<interface>>\n    }\n\n    class SWAN-CL_BASE[\"/SWAN/CL_BASE\"]\n\n    SWAN-CL_BASE <|-- SWAN-CL_CUSTOM_CLASS  \n\n    SWAN-CL_CUSTOM_CLASS ..|> SWAN-IF_BASE  \n\n    SWAN-CL_CUSTOM_CLASS ..|> SWAN-IF_CUSTOM   \n```\n\n**Methods:**  \n- List every method.  \n- For each method, specify its visibility (public, protected, private) and whether it is static or abstract.  \n- Describe the logic of each method in 1-5 sentences, depending on its complexity.  \n- For each method, list all parameters, sorted by IMPORTING, CHANGING, EXPORTING, RETURNING, EXCEPTIONS.  \n- For each parameter, provide a one-sentence description.  \n- If a method has no parameters or exceptions, state this explicitly.\n- If a method has no parameters or exceptions, please state explicitly:    \n_\"This method has no parameters or exceptions.\"_\n\n**Formatting:**  \n- Use Markdown headings for class and method names.  \n- Start with headline level \"##\" instead of \"#\".\n- Use tables for parameter lists with the following columns: Name | Data type | Parameter type | Description.\n- Ensure consistent indentation and spacing for readability.\n\n**Example:**\n## ZCL_PDF_PRINTER\n\nThis class handles the creation and printing of PDF forms for user messages. It manages the generation, storage, and dispatch of PDF documents to network printers based on user-specific settings. The class ensures that all printer-related exceptions are handled according to SAP standards.\n\n<placeholder for mermaid>\n\n---\n\n### METHOD_PRINT_PDF\n\n**Visibility:** public, static\n\nPrints the provided user message to a PDF form. The form is saved on a network storage and sent to the user's default printer. If no printer is found, an exception is raised.\n\n\n| Name           | Data type      | Parameter type | Description                                              |  \n|----------------|----------------|----------------|----------------------------------------------------------|  \n| iv_message     | STRING         | IMPORTING      | The message text to be printed on the PDF form.          |  \n| iv_user_id     | STRING         | IMPORTING      | The user ID for whom the PDF should be generated.        |  \n| ev_pdf_path    | STRING         | EXPORTING      | The file path where the generated PDF is stored.         |  \n| cx_no_printer  | CX_NO_PRINTER  | EXCEPTION      | Raised if no printer is assigned to the specified user.  |\n\n---\n\n### METHOD_GET_PRINTER_FOR_USER\n\n**Visibility:** protected\n\nDetermines the default printer for a given user by reading the user settings from the custom table ZUSER_PRINTER. Returns the printer name or raises an exception if not found.\n\n| Name           | Data type      | Parameter type | Description                                              |\n|----------------|----------------|----------------|----------------------------------------------------------|  \n| iv_user_id     | STRING         | IMPORTING      | The user ID whose printer settings are to be retrieved.  |  \n| rv_printer     | STRING         | RETURNING      | The determined printer name for the user.                |  \n| cx_no_printer  | CX_NO_PRINTER  | EXCEPTION      | Raised if no printer is assigned to the specified user.  |\n\n---\n\n### METHOD_GENERATE_PDF\n\n**Visibility:** protected\n\nGenerates a PDF document from the provided message text. The PDF is created in memory and prepared for storage.\n\n| Name           | Data type      | Parameter type | Description                                              |  \n|----------------|----------------|----------------|----------------------------------------------------------|  \n| iv_message     | STRING         | IMPORTING      | The message text to be included in the PDF.              |  \n| rv_pdf_data    | XSTRING        | RETURNING      | The generated PDF data as a binary string.               |\n\n---\n\n**ABAP class information:**\n- Name: {{ $('Switch').item.json.obj_name }}\n- Description: {{ $('Switch').item.json.description }}\n- Package: {{ $('Switch').item.json.devclass }}\n\n**ABAP Class Code:**  \n{{ $json.data }}\n\n\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        812,
+        260
+      ],
+      "id": "ac215e34-53fe-4803-92b0-2b3e1c86ccca",
+      "name": "Klasse dokumentieren"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are an SAP ABAP Expert.\n\nYour task is to write technical documentation in Markdown for the given ABAP object.\n\n**General Rules:**  \n1. Describe the code in clear, human-readable language.  \n2. Do not invent any logic or parameters not present in the code.  \n3. Follow the output structure as shown in the example.\n5. Do not add additional headlines\n4. If you are unsure about any aspect of the code or if information is missing, ask for clarification.\n5. Start with headline level \"##\" instead of \"#\".\n7. Use SAP naming conventions (e.g., field names and types in UPPER CASE). \n\n**Overview**\nGive a short description of the table or structure and its purpose in the SAP system.\n\n**Metadata**  \n- Only document this section if the object is a table (not a structure). \n- document if the table ist extensible\n- document the table category\n- document the delivery class\n- document the data maintenance\n\n**Columns**\n1. The header should be \"### Table\" if it is a table OR \"### Structure\" if it is a structure\n2. Render a markdown table for all fields:\n  - Column headers: \"Field Name, Field Type, Description, Additional Informations\"  \n  - Values of \"Field Name\" and \"Field Type\" are in UPPER CASE. Other columns in language-specific case.\n\n**Example**\n## ZEWM_S_UI5_NOK_WORKSTATION\n\n### Overview\nThe `ZEWM_S_UI5_NOK_WORKSTATION` structure is defined for the representation of workstation-related data within the SAP system. The structure is marked as not extensible, ensuring its integrity and stability in various applications.\n\n### Metadata\n- Extensible: Yes\n- Table Category: Transparent (Application Data)\n- Delivery Class: A (Application Table)\n- Data Maintenance: Allowed\n\n### Table\n\n| Field Name         | Field Type                | Description                | Additional Informations |\n|--------------------|---------------------------|----------------------------|-------------------------|\n| WORKSTATION        | /SCWM/DE_WORKSTATION      | Workstation identifier     |                         |\n| DESCRIPTION        | /SCWM/DE_DESC40           | Description of the workstation |                     |\n| WORKSTATION_TYPE   | /SCWM/DE_WRKSTTYP         | Type of the workstation    |                         |\n| LGPLA              | /SCWM/LGPLA               | Storage location           |                         |\n| USER_ID            | UNAME                     | User identifier            |                         |\n\n\n**ABAP information:**\n- Name: {{ $('Switch').item.json.obj_name }}\n- Description: {{ $('Switch').item.json.description }}\n- Package: {{ $('Switch').item.json.devclass }}\n\n**ABAP Code:**  \n{{ $json.data }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        60,
+        2860
+      ],
+      "id": "c888199e-523f-4857-8bea-c9727960d43b",
+      "name": "Dictionary dokumentieren"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.base_url }}/sap/opu/odata/sap/ZSWAN_AI_DOC/objectSet?$top=9999&$filter=devclass eq '{{ $('Package Eingabe').item.json['Package Name'] }}'",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "sap-client",
+              "value": "={{ $json.sap_client }}"
+            },
+            {
+              "name": "sap-language",
+              "value": "={{ $json.sap_language }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1260,
+        3910
+      ],
+      "id": "aca503f7-442c-41e5-b46e-2cdd42ce525b",
+      "name": "Paket Inhalte abrufen",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "64TPOLOMWauRcZ0t",
+          "name": "A4H KERNICH"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "merged",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "docu.md"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        138,
+        3260
+      ],
+      "id": "de4bde3b-f4d7-4231-9447-f41bfca231e3",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allDocs = $input.all().map(x => x.json.output).join(\"\\n\\n\");\nconst toc = $('Inhaltsverzeichnis').first().json.toc;\n\nreturn {\n  merged: toc + \"\\n\\n\" + allDocs\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        3260
+      ],
+      "id": "780fb060-8784-463c-8d87-8301be0f15cc",
+      "name": "Dokumente zusammenführen"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        514,
+        -378
+      ],
+      "id": "8fb75303-ae85-4ad2-8fe0-8c016dfb5ad0",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        900,
+        -20
+      ],
+      "id": "b5e51ae8-b54b-46db-97ac-ab84a350a788",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "Cty9mrXPUK5TfyYs",
+          "name": "OpenAI Key Mario"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1266,
+        -228
+      ],
+      "id": "cb08c250-c9b4-4eaf-b68c-954f18e005f6",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        148,
+        630
+      ],
+      "id": "04bf51af-515a-48af-9d7a-77bc07b00cfc",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "Cty9mrXPUK5TfyYs",
+          "name": "OpenAI Key Mario"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        148,
+        1030
+      ],
+      "id": "dcde9574-7ed3-4883-a825-07ad2df166cf",
+      "name": "OpenAI Chat Model4",
+      "credentials": {
+        "openAiApi": {
+          "id": "Cty9mrXPUK5TfyYs",
+          "name": "OpenAI Key Mario"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        148,
+        1430
+      ],
+      "id": "95c65587-a705-4155-8cfb-762194268869",
+      "name": "OpenAI Chat Model5",
+      "credentials": {
+        "openAiApi": {
+          "id": "Cty9mrXPUK5TfyYs",
+          "name": "OpenAI Key Mario"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        514,
+        2660
+      ],
+      "id": "5d7d0f46-c936-41e5-ac95-2d0c40fe0852",
+      "name": "Loop Over Items2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        890,
+        2360
+      ],
+      "id": "b361abda-7a79-4d55-9260-ce06326848f3",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        148,
+        1830
+      ],
+      "id": "9aeb79f0-e813-4ac6-9602-c03633de4739",
+      "name": "OpenAI Chat Model6",
+      "credentials": {
+        "openAiApi": {
+          "id": "Cty9mrXPUK5TfyYs",
+          "name": "OpenAI Key Mario"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        148,
+        2330
+      ],
+      "id": "78c193c9-b15f-411e-9823-72c3a2e4bc5a",
+      "name": "OpenAI Chat Model7",
+      "credentials": {
+        "openAiApi": {
+          "id": "Cty9mrXPUK5TfyYs",
+          "name": "OpenAI Key Mario"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.debugHelper",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        1910
+      ],
+      "id": "2949f285-731b-4721-9af4-70a371e34ae8",
+      "name": "DebugHelper"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        812,
+        -240
+      ],
+      "id": "ca3b3506-e656-4d6e-8294-b7a799f2fed9",
+      "name": "Methode dokumentieren"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Konstanten').item.json.base_url }}/sap/bc/adt/oo/classes/{{ encodeURIComponent($json.obj_name) }}/source/main",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -160,
+        1710
+      ],
+      "id": "d08130fc-a6b7-4c54-90a6-431e3902d781",
+      "name": "Interface abrufen"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Konstanten').item.json.base_url }}/sap/bc/adt/oo/classes/{{ encodeURIComponent($json.obj_name) }}/source/main",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -160,
+        1310
+      ],
+      "id": "a1ebbd87-f7c2-4cd1-a49f-8be6c5cfdb53",
+      "name": "Nachrichtenklasse abrufen"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Konstanten').item.json.base_url }}/sap/bc/adt/oo/classes/{{ encodeURIComponent($json.obj_name) }}/source/main",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -160,
+        910
+      ],
+      "id": "56a2940b-2a99-4823-aa28-49f578361202",
+      "name": "Programm abrufen"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Konstanten').item.json.base_url }}/sap/bc/adt/oo/classes/{{ encodeURIComponent($json.obj_name) }}/source/main",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -160,
+        510
+      ],
+      "id": "c58e1711-f195-468b-a40b-53553aa26bf8",
+      "name": "Transaktion abrufen"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Konstanten').item.json.base_url }}/sap/bc/adt/oo/classes/{{ encodeURIComponent($json.obj_name) }}/source/main",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -160,
+        2110
+      ],
+      "id": "78a3cefe-e12e-4d73-b051-156404da84e7",
+      "name": "Tabellen Typ abrufen"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        60,
+        2110
+      ],
+      "id": "008c0cf0-ed10-4093-bf23-04ea7f79edcd",
+      "name": "Tabellen Typ dokumentieren"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Konstanten').item.json.base_url }}/sap/bc/adt/oo/classes/{{ encodeURIComponent($json.obj_name) }}/source/main",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -160,
+        2447
+      ],
+      "id": "3159001e-665d-4abe-ac6c-ba3d4d789f23",
+      "name": "Funktionsgruppe abrufen"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Your are an SAP ABAP expert. ",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        436,
+        2260
+      ],
+      "id": "a375eeb4-04fb-4c30-b3b9-c579506a29cc",
+      "name": "Funktionsgruppe dokumentieren"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1276,
+        2955
+      ],
+      "id": "3bb0c442-4b2e-42a0-9187-05ffe969b678",
+      "name": "OpenAI Chat Model8",
+      "credentials": {
+        "openAiApi": {
+          "id": "Cty9mrXPUK5TfyYs",
+          "name": "OpenAI Key Mario"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        524,
+        2480
+      ],
+      "id": "b3400864-438a-4d39-8d52-43fe87ad2a9b",
+      "name": "OpenAI Chat Model9",
+      "credentials": {
+        "openAiApi": {
+          "id": "Cty9mrXPUK5TfyYs",
+          "name": "OpenAI Key Mario"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        138,
+        -378
+      ],
+      "id": "9dd67f26-3e23-489b-a8ec-8afc6abe0d93",
+      "name": "Methoden extrahieren"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        890,
+        -440
+      ],
+      "id": "5d8450b2-020f-4821-8784-27e9d3d49677",
+      "name": "Methoden Dokumente zusammenführen"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        60,
+        420
+      ],
+      "id": "9a71619c-2908-4dc9-a63b-f2f685a42719",
+      "name": "Transaktion dokumentieren"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        60,
+        810
+      ],
+      "id": "8109fe2c-f3dd-4d79-8e21-3404625f68b0",
+      "name": "Programm dokumentieren"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        60,
+        1610
+      ],
+      "id": "e877f9de-e06b-4a5a-bf4f-2bcdab4e3db0",
+      "name": "Interface dokumentieren"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        138,
+        2660
+      ],
+      "id": "b832680f-c392-4a64-94d4-aa9461df1197",
+      "name": "Funktionsmodule ermitteln"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Konstanten').item.json.base_url }}/sap/bc/adt/oo/classes/{{ encodeURIComponent($json.obj_name) }}/source/main",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        890,
+        2660
+      ],
+      "id": "265cdbfa-d277-4ba8-a721-f74ef2045288",
+      "name": "Funktionsmodul abfragen"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Your are an SAP ABAP expert. ",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        2740
+      ],
+      "id": "51a6819e-18f8-44a5-94d3-3860207ca086",
+      "name": "Funktionsmodul dokumentieren"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1266,
+        2360
+      ],
+      "id": "18f48f7d-828c-46ad-89a4-483cd1e8ae93",
+      "name": "Dokumentation für Funktionsgruppe zusammenführen"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        60,
+        1210
+      ],
+      "id": "4f379d6a-c94b-4ea8-977e-4bd1409dcac2",
+      "name": "Nachrichtenklasse dokumentieren"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1564,
+        1435
+      ],
+      "id": "9259a6cf-0388-4add-8c44-8392ef65ce44",
+      "name": "Klassen dokumentation zusammenführen"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        -380,
+        3260
+      ],
+      "id": "b8416ef0-30bb-4c89-ab7f-87590ae8ca91",
+      "name": "Dokumentation fertig"
+    }
+  ],
+  "pinData": {
+    "Package Eingabe": [
+      {
+        "json": {
+          "Package Name": "/DMO/FLIGHT_LEGACY",
+          "submittedAt": "2025-06-02T08:42:06.498+00:00",
+          "formMode": "test"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Inhaltsverzeichnis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Dokumentation fertig",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Klasse abrufen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tabelle abrufen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Transaktion abrufen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Programm abrufen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Nachrichtenklasse abrufen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Funktionsgruppe abrufen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Interface abrufen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tabellen Typ abrufen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "DebugHelper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Package Eingabe": {
+      "main": [
+        [
+          {
+            "node": "Konstanten",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Konstanten": {
+      "main": [
+        [
+          {
+            "node": "Paket Inhalte abrufen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MarkDown als Datei speichern": {
+      "main": [
+        [
+          {
+            "node": "Pandoc ausführen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inhaltsverzeichnis": {
+      "main": [
+        [
+          {
+            "node": "Dokumentation fertig",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Klasse abrufen": {
+      "main": [
+        [
+          {
+            "node": "Methoden extrahieren",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Klasse dokumentieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tabelle abrufen": {
+      "main": [
+        [
+          {
+            "node": "Dictionary dokumentieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Dictionary dokumentieren",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Klasse dokumentieren",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Klasse dokumentieren": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Dictionary dokumentieren": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Paket Inhalte abrufen": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "MarkDown als Datei speichern",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dokumente zusammenführen": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Methoden Dokumente zusammenführen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Methode dokumentieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Methode dokumentieren",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Klassen dokumentation zusammenführen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Transaktion dokumentieren",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Programm dokumentieren",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Nachrichtenklasse dokumentieren",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Funktionsmodul abfragen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Dokumentation für Funktionsgruppe zusammenführen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Interface dokumentieren",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model7": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Tabellen Typ dokumentieren",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Methode dokumentieren": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Interface abrufen": {
+      "main": [
+        [
+          {
+            "node": "Interface dokumentieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nachrichtenklasse abrufen": {
+      "main": [
+        [
+          {
+            "node": "Nachrichtenklasse dokumentieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Programm abrufen": {
+      "main": [
+        [
+          {
+            "node": "Programm dokumentieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transaktion abrufen": {
+      "main": [
+        [
+          {
+            "node": "Transaktion dokumentieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tabellen Typ abrufen": {
+      "main": [
+        [
+          {
+            "node": "Tabellen Typ dokumentieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tabellen Typ dokumentieren": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Funktionsgruppe abrufen": {
+      "main": [
+        [
+          {
+            "node": "Funktionsgruppe dokumentieren",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Funktionsmodule ermitteln",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Funktionsgruppe dokumentieren": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model8": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Funktionsmodul dokumentieren",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model9": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Funktionsgruppe dokumentieren",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Methoden extrahieren": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Methoden Dokumente zusammenführen": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transaktion dokumentieren": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Programm dokumentieren": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Interface dokumentieren": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Funktionsmodule ermitteln": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Funktionsmodul abfragen": {
+      "main": [
+        [
+          {
+            "node": "Funktionsmodul dokumentieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Funktionsmodul dokumentieren": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dokumentation für Funktionsgruppe zusammenführen": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nachrichtenklasse dokumentieren": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Klassen dokumentation zusammenführen": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dokumentation fertig": {
+      "main": [
+        [
+          {
+            "node": "Dokumente zusammenführen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a8de7219-31fd-4945-96e2-66da4a7f76fc",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d001d888587c12598bcad36f4814fd4d54ee56706efffe84b627565d74da4072"
+  },
+  "id": "t2bbaGS0863SvODP",
+  "tags": []
+}

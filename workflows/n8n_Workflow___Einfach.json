@@ -1,0 +1,715 @@
+{
+  "name": "n8n Workflow - Einfach",
+  "nodes": [
+    {
+      "parameters": {
+        "fieldToSplitOut": "d.results",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -1640,
+        860
+      ],
+      "id": "09d474a4-c83d-4792-bcef-30045c7c63b6",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "bda52f5d-da23-4da1-a16c-02348785c05c",
+              "leftValue": "={{ $json.obj_name }}",
+              "rightValue": "/DMO/CL_FLIGHT_LEGACY",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -1420,
+        620
+      ],
+      "id": "07b9d82f-c7b0-455f-95d5-09b70dc66e5e",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1200,
+        620
+      ],
+      "id": "5287b09b-26b9-44d2-b3db-b74e6817d8fe",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.object }}",
+                    "rightValue": "CLAS",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "b5357491-10c0-402d-87d0-ece645377e19"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "CLAS"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "83fcb0f2-bb8e-45ca-b986-b3c3009aa306",
+                    "leftValue": "={{ $json.object }}",
+                    "rightValue": "TABL",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "DDIC"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -980,
+        80
+      ],
+      "id": "1f2101ce-d16b-4335-8457-55be82150c48",
+      "name": "Switch"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        -980,
+        740
+      ],
+      "id": "be09beac-2169-4fce-b995-9658395a4f5d",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "formTitle": "Package",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Package Name",
+              "placeholder": "Paket Name eingeben..."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -2300,
+        860
+      ],
+      "id": "bf3fa8a7-f023-4731-9290-e9cf949bc973",
+      "name": "Package Eingabe",
+      "webhookId": "722a9504-c11e-4380-9bed-bec9dc539a64"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7eb59e48-1889-465b-980f-5455544270ab",
+              "name": "base_url",
+              "value": "http://vhcala4hci:50000",
+              "type": "string"
+            },
+            {
+              "id": "87247805-a39a-4af1-98fe-e4a14a8f2c0a",
+              "name": "sap_client",
+              "value": "001",
+              "type": "string"
+            },
+            {
+              "id": "e4c60e27-c24c-43e6-a3ef-7d0d97e91e61",
+              "name": "sap_language",
+              "value": "EN",
+              "type": "string"
+            },
+            {
+              "id": "fd4814c3-c770-4d63-8748-73e2ff65755b",
+              "name": "out_dir",
+              "value": "/Users/mario/Desktop/n8n-documentation",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2080,
+        860
+      ],
+      "id": "32a6d775-4174-4efc-8132-d7cef9d11398",
+      "name": "Konstanten"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $('Konstanten').first().json.out_dir }}/docu.md ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        780
+      ],
+      "id": "abc11ea9-1c7c-4344-9fbe-65a416084c58",
+      "name": "MarkDown als Datei speichern"
+    },
+    {
+      "parameters": {
+        "command": "=mmdc -i \"{{ $('Konstanten').first().json.out_dir }}/docu.md\" -o \"{{ $('Konstanten').first().json.out_dir }}/preprocessed.md\" && pandoc \"{{ $('Konstanten').first().json.out_dir }}/preprocessed.md\" -f markdown-implicit_figures -o \"{{ $('Konstanten').first().json.out_dir }}/docu.html\" --embed-resource --standalone --css=\"{{ $('Konstanten').first().json.out_dir }}/style.css\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        60,
+        780
+      ],
+      "id": "d01c8b7e-1040-4c8c-8fd1-66966e33b672",
+      "name": "Pandoc ausführen"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Konstanten').item.json.base_url }}/sap/bc/adt/oo/classes/{{ encodeURIComponent($json.obj_name) }}/source/main",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "text/plain"
+            },
+            {
+              "name": "sap-client",
+              "value": "={{ $('Konstanten').item.json.sap_client }}"
+            },
+            {
+              "name": "sap-language",
+              "value": "={{ $('Konstanten').item.json.sap_language }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -760,
+        40
+      ],
+      "id": "1a7e37e6-8eb6-4af5-8dd8-def4a730d12e",
+      "name": "Klasse abrufen",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "64TPOLOMWauRcZ0t",
+          "name": "A4H KERNICH"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Konstanten').item.json.base_url }}/sap/bc/adt/ddic/structures/{{ encodeURIComponent($json.obj_name) }}/source/main",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "text/plain"
+            },
+            {
+              "name": "sap-client",
+              "value": "={{ $('Konstanten').item.json.sap_client }}"
+            },
+            {
+              "name": "sap-language",
+              "value": "={{ $('Konstanten').item.json.sap_language }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -760,
+        440
+      ],
+      "id": "6f3d7928-e70a-4e3b-9bb0-62993c90b4bf",
+      "name": "Tabelle abrufen",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "64TPOLOMWauRcZ0t",
+          "name": "A4H KERNICH"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconsole.log(\"items\", items);\nconst all = items.map(i => i.json)\nconst startPackage = $('Package Eingabe').first().json['Package Name']\n\nlet md = ''\nconst typeLabels = {\n  CLAS: 'Classes',\n  INTF: 'Interfaces',\n  TABL: 'Dictionary Elements',\n  PROG: 'Programs',\n  FUGR: 'Function Groups',\n  TRAN: 'Transactions',\n  ENHO: 'Enhancements',\n  DEVC: 'Packages',\n  DTEL: 'Data Elements',\n  DOMA: 'Domains',\n  MSAG: 'Message class'\n}\n\nconst writeSentence = (sentence) => {\n  if(sentence.trim().endsWith(\".\")) {\n    return sentence;\n  } else {\n    return sentence + \".\";\n  }\n}\n\nconst startPackageObj =  items.map(i => i.json).find(x => x.obj_name === startPackage && x.object === 'DEVC');\nconst data = all.filter(x => x.obj_name !== startPackage && x.object !== 'DEVC');\n\nconst typeOrder = ['CLAS', 'INTF', 'TABL']\n\nconst grouped = {}\n\nfor (const { devclass, object, obj_name, description } of data) {\n  if (!grouped[devclass]) grouped[devclass] = {}\n  if (!grouped[devclass][object]) grouped[devclass][object] = []\n  grouped[devclass][object].push({ obj_name, object, description })\n}\n\nconst countPackages =  items.map(i => i.json).filter(x => x.object === 'DEVC');\nconst countobjects =  items.map(i => i.json).filter(x => x.object !== 'DEVC');\n\nmd += '# Technical documentation of ' + startPackage + '\\n\\n'\n\nif(startPackageObj && startPackageObj.description) {\n  md += writeSentence(startPackageObj.description) + '\\n\\n';\n}\n\nif(countPackages.length > 0) {\nmd += 'This technical documentation contains ' + countPackages.length + ' sub packages and '+ countobjects.length + ' development objects.\\n\\n';\n} else {\n  md += 'This technical documentation contains ' + countobjects.length + ' development objects.\\n\\n';\n}\n\nfor (const pkg in grouped) {\n  md += '## 📦 ' + pkg + '\\n'\n\n  const allobjects = Object.values(grouped[pkg]).flat()\n  const firstWithdescription = allobjects.find(obj => obj.description)\n  if (firstWithdescription) {\n    md += writeSentence(firstWithdescription.description) + '\\n\\n'\n  }\n\n  const sortedTypes = Object.keys(grouped[pkg]).sort((a, b) => {\n    const idxA = typeOrder.indexOf(a) === -1 ? 999 : typeOrder.indexOf(a)\n    const idxB = typeOrder.indexOf(b) === -1 ? 999 : typeOrder.indexOf(b)\n    return idxA - idxB || a.localeCompare(b)\n  })\n\n  for (const type of sortedTypes) {\n    const label = typeLabels[type] || type\n    md += '### ' + label + '\\n'\n    const entries = grouped[pkg][type].sort((a, b) => a.obj_name.localeCompare(b.obj_name))\n    for (const { obj_name, object, description } of entries) {\n      const name = `**${obj_name}**`;\n      md += '- ' + name + (description ? ' - ' + description : '') + '\\n';\n    }\n    md += '\\n'\n  }\n}\n\nreturn [{ json: { toc: md, package: startPackage } }]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1200,
+        1140
+      ],
+      "id": "b344d876-e9a7-46bc-91df-da0777064916",
+      "name": "Inhaltsverzeichnis"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -460,
+        600
+      ],
+      "id": "b9a0c1a5-aa8c-44ff-a800-ba1418a9b667",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "Cty9mrXPUK5TfyYs",
+          "name": "OpenAI Key Mario"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -460,
+        200
+      ],
+      "id": "f29ab7f6-a3c7-4fb6-9f49-ca8576e6565b",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "Cty9mrXPUK5TfyYs",
+          "name": "OpenAI Key Mario"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are an SAP ABAP Expert.\n\nYour task is to write technical documentation in Markdown for the given ABAP class.\n\n**General Rules:**  \n1. Describe the code in clear, human-readable language.  \n2. Do not invent any logic or parameters not present in the code.  \n3. Follow the output structure as shown in the example.\n5. Do not add additional headlines\n4. If you are unsure about any aspect of the code or if information is missing, ask for clarification.\n\n**SAP-specific Aspects:**    \n- Explicitly mention the use of SAP exception classes (e.g., `CX_*`).  \n- If the code accesses SAP tables, transactions, or uses SAP-specific logic, mention this in the documentation.\n\n**Class Header:**\n1. Describe the general use case of the class in 1-5 sentences, depending on its complexity.\n2. Create a class Diagramm with the \"mermaid\" syntax\n- Remove the slashes (\"/\") from the namespace and connect the namespace and object name with a hyphen. Example: /DMO/TEST → DMO-TEST\n- The technical name (with \"/\") should be shown in quotes in the diagram.\n- Static methods are marked with a $ suffix.\n- Abstract methods are marked with a * suffix.\n- Add the parent class and all used interfaces as \"class\".\n- Always place <<interface>> inside the curly brackets of the interface declaration.\n\n**Mermaid Example:** \n```mermaid  \n\nclassDiagram\n\n    class SWAN-CL_CUSTOM_CLASS[\"/SWAN/CL_CUSTOM_CLASS\"]{    \n\n      +CONSTRUCTOR(iv_event: TPDA_EVENT_TYPE, iv_index: SYTABIX)  \n\n      +SET_DURATION() /SWAN/DE_BASE_APPL_DURATION  \n\n      -GS_APPL: /SWAN/S_BASE_APPL  \n\n      +EXAMPLE_STATIC() string$  \n\n      +EXAMPLE_ABSTRACT() string*  \n\n    }\n\n    class SWAN-IF_CUSTOM[\"/SWAN/IF_CUSTOM\"]{\n      <<interface>>\n    }\n\n    class SWAN-IF_BASE[\"/SWAN/IF_BASE\"]{\n      <<interface>>\n    }\n\n    class SWAN-CL_BASE[\"/SWAN/CL_BASE\"]\n\n    SWAN-CL_BASE <|-- SWAN-CL_CUSTOM_CLASS  \n\n    SWAN-CL_CUSTOM_CLASS ..|> SWAN-IF_BASE  \n\n    SWAN-CL_CUSTOM_CLASS ..|> SWAN-IF_CUSTOM   \n```\n\n**Methods:**  \n- List every method.  \n- For each method, specify its visibility (public, protected, private) and whether it is static or abstract.  \n- Describe the logic of each method in 1-5 sentences, depending on its complexity.  \n- For each method, list all parameters, sorted by IMPORTING, CHANGING, EXPORTING, RETURNING, EXCEPTIONS.  \n- For each parameter, provide a one-sentence description.  \n- If a method has no parameters or exceptions, state this explicitly.\n- If a method has no parameters or exceptions, please state explicitly:    \n_\"This method has no parameters or exceptions.\"_\n\n**Formatting:**  \n- Use Markdown headings for class and method names.  \n- Start with headline level \"##\" instead of \"#\".\n- Use tables for parameter lists with the following columns: Name | Data type | Parameter type | Description.\n- Ensure consistent indentation and spacing for readability.\n\n**Example:**\n## ZCL_PDF_PRINTER\n\nThis class handles the creation and printing of PDF forms for user messages. It manages the generation, storage, and dispatch of PDF documents to network printers based on user-specific settings. The class ensures that all printer-related exceptions are handled according to SAP standards.\n\n<placeholder for mermaid>\n\n---\n\n### METHOD_PRINT_PDF\n\n**Visibility:** public, static\n\nPrints the provided user message to a PDF form. The form is saved on a network storage and sent to the user's default printer. If no printer is found, an exception is raised.\n\n\n| Name           | Data type      | Parameter type | Description                                              |  \n|----------------|----------------|----------------|----------------------------------------------------------|  \n| iv_message     | STRING         | IMPORTING      | The message text to be printed on the PDF form.          |  \n| iv_user_id     | STRING         | IMPORTING      | The user ID for whom the PDF should be generated.        |  \n| ev_pdf_path    | STRING         | EXPORTING      | The file path where the generated PDF is stored.         |  \n| cx_no_printer  | CX_NO_PRINTER  | EXCEPTION      | Raised if no printer is assigned to the specified user.  |\n\n---\n\n### METHOD_GET_PRINTER_FOR_USER\n\n**Visibility:** protected\n\nDetermines the default printer for a given user by reading the user settings from the custom table ZUSER_PRINTER. Returns the printer name or raises an exception if not found.\n\n| Name           | Data type      | Parameter type | Description                                              |\n|----------------|----------------|----------------|----------------------------------------------------------|  \n| iv_user_id     | STRING         | IMPORTING      | The user ID whose printer settings are to be retrieved.  |  \n| rv_printer     | STRING         | RETURNING      | The determined printer name for the user.                |  \n| cx_no_printer  | CX_NO_PRINTER  | EXCEPTION      | Raised if no printer is assigned to the specified user.  |\n\n---\n\n### METHOD_GENERATE_PDF\n\n**Visibility:** protected\n\nGenerates a PDF document from the provided message text. The PDF is created in memory and prepared for storage.\n\n| Name           | Data type      | Parameter type | Description                                              |  \n|----------------|----------------|----------------|----------------------------------------------------------|  \n| iv_message     | STRING         | IMPORTING      | The message text to be included in the PDF.              |  \n| rv_pdf_data    | XSTRING        | RETURNING      | The generated PDF data as a binary string.               |\n\n---\n\n**ABAP class information:**\n- Name: {{ $('Switch').item.json.obj_name }}\n- Description: {{ $('Switch').item.json.description }}\n- Package: {{ $('Switch').item.json.devclass }}\n\n**ABAP Class Code:**  \n{{ $json.data }}\n\n\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        -540,
+        -20
+      ],
+      "id": "d0a2bd07-e379-4066-bf55-0ab4fcf5aba7",
+      "name": "Klasse dokumentieren"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are an SAP ABAP Expert.\n\nYour task is to write technical documentation in Markdown for the given ABAP object.\n\n**General Rules:**  \n1. Describe the code in clear, human-readable language.  \n2. Do not invent any logic or parameters not present in the code.  \n3. Follow the output structure as shown in the example.\n5. Do not add additional headlines\n4. If you are unsure about any aspect of the code or if information is missing, ask for clarification.\n5. Start with headline level \"##\" instead of \"#\".\n7. Use SAP naming conventions (e.g., field names and types in UPPER CASE). \n\n**Overview**\nGive a short description of the table or structure and its purpose in the SAP system.\n\n**Metadata**  \n- Only document this section if the object is a table (not a structure). \n- document if the table ist extensible\n- document the table category\n- document the delivery class\n- document the data maintenance\n\n**Columns**\n1. The header should be \"### Table\" if it is a table OR \"### Structure\" if it is a structure\n2. Render a markdown table for all fields:\n  - Column headers: \"Field Name, Field Type, Description, Additional Informations\"  \n  - Values of \"Field Name\" and \"Field Type\" are in UPPER CASE. Other columns in language-specific case.\n\n**Example**\n## ZEWM_S_UI5_NOK_WORKSTATION\n\n### Overview\nThe `ZEWM_S_UI5_NOK_WORKSTATION` structure is defined for the representation of workstation-related data within the SAP system. The structure is marked as not extensible, ensuring its integrity and stability in various applications.\n\n### Metadata\n- Extensible: Yes\n- Table Category: Transparent (Application Data)\n- Delivery Class: A (Application Table)\n- Data Maintenance: Allowed\n\n### Table\n\n| Field Name         | Field Type                | Description                | Additional Informations |\n|--------------------|---------------------------|----------------------------|-------------------------|\n| WORKSTATION        | /SCWM/DE_WORKSTATION      | Workstation identifier     |                         |\n| DESCRIPTION        | /SCWM/DE_DESC40           | Description of the workstation |                     |\n| WORKSTATION_TYPE   | /SCWM/DE_WRKSTTYP         | Type of the workstation    |                         |\n| LGPLA              | /SCWM/LGPLA               | Storage location           |                         |\n| USER_ID            | UNAME                     | User identifier            |                         |\n\n\n**ABAP information:**\n- Name: {{ $('Switch').item.json.obj_name }}\n- Description: {{ $('Switch').item.json.description }}\n- Package: {{ $('Switch').item.json.devclass }}\n\n**ABAP Code:**  \n{{ $json.data }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        -540,
+        380
+      ],
+      "id": "47057c9e-d290-4ef5-a868-8ca1126afae3",
+      "name": "Dictionary dokumentieren"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.base_url }}/sap/opu/odata/sap/ZSWAN_AI_DOC/objectSet?$top=9999&$filter=devclass eq '{{ $('Package Eingabe').item.json['Package Name'] }}'",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "sap-client",
+              "value": "={{ $json.sap_client }}"
+            },
+            {
+              "name": "sap-language",
+              "value": "={{ $json.sap_language }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1860,
+        860
+      ],
+      "id": "f31fa241-f39f-40ed-9ecc-fc80167f20de",
+      "name": "Paket Inhalte abrufen",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "64TPOLOMWauRcZ0t",
+          "name": "A4H KERNICH"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "merged",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "docu.md"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -460,
+        780
+      ],
+      "id": "1117edf7-8643-404a-b8c5-36ec9ba47397",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allDocs = $input.all().map(x => x.json.output).join(\"\\n\\n\");\nconst toc = $('Inhaltsverzeichnis').first().json.toc;\n\nreturn {\n  merged: toc + \"\\n\\n\" + allDocs\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -760,
+        740
+      ],
+      "id": "1675dd36-8f76-4c5f-b50a-0a4eebad53bd",
+      "name": "Dokumente zusammenführen"
+    }
+  ],
+  "pinData": {
+    "Package Eingabe": [
+      {
+        "json": {
+          "Package Name": "/DMO/FLIGHT_LEGACY",
+          "submittedAt": "2025-06-02T08:42:06.498+00:00",
+          "formMode": "test"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Inhaltsverzeichnis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Klasse abrufen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tabelle abrufen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Package Eingabe": {
+      "main": [
+        [
+          {
+            "node": "Konstanten",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Konstanten": {
+      "main": [
+        [
+          {
+            "node": "Paket Inhalte abrufen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Dokumente zusammenführen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MarkDown als Datei speichern": {
+      "main": [
+        [
+          {
+            "node": "Pandoc ausführen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inhaltsverzeichnis": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Klasse abrufen": {
+      "main": [
+        [
+          {
+            "node": "Klasse dokumentieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tabelle abrufen": {
+      "main": [
+        [
+          {
+            "node": "Dictionary dokumentieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Dictionary dokumentieren",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Klasse dokumentieren",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Klasse dokumentieren": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dictionary dokumentieren": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Paket Inhalte abrufen": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "MarkDown als Datei speichern",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dokumente zusammenführen": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "48f6d07b-7a37-4065-a0e4-eb5cf79a5864",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d001d888587c12598bcad36f4814fd4d54ee56706efffe84b627565d74da4072"
+  },
+  "id": "nHZgGjEKyYH0L4Od",
+  "tags": []
+}
