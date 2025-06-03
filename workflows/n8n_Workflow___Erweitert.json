@@ -308,7 +308,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "{\n  \"base_url\": \"https://a4h.kernich.de\",\n  \"sap_client\": \"001\",\n  \"sap_language\": \"EN\",\n  \"out_dir\": \"/tmp\"\n}",
+        "jsonOutput": "{\n  \"base_url\": \"http://vhcala4hci:50000\",\n  \"sap_client\": \"001\",\n  \"sap_language\": \"EN\",\n  \"out_dir\": \"/tmp\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.set",
@@ -1744,7 +1744,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "a8de7219-31fd-4945-96e2-66da4a7f76fc",
+  "versionId": "36ee7664-d4af-4e4e-87e9-29ab5b4c50f5",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "d001d888587c12598bcad36f4814fd4d54ee56706efffe84b627565d74da4072"

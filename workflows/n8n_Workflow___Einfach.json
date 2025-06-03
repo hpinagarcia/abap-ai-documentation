@@ -9,8 +9,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -1640,
-        860
+        -1360,
+        1155
       ],
       "id": "09d474a4-c83d-4792-bcef-30045c7c63b6",
       "name": "Split Out"
@@ -43,8 +43,8 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        -1420,
-        620
+        -1140,
+        900
       ],
       "id": "07b9d82f-c7b0-455f-95d5-09b70dc66e5e",
       "name": "Filter"
@@ -58,8 +58,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -1200,
-        620
+        -920,
+        905
       ],
       "id": "5287b09b-26b9-44d2-b3db-b74e6817d8fe",
       "name": "Loop Over Items"
@@ -124,8 +124,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -980,
-        80
+        -700,
+        380
       ],
       "id": "1f2101ce-d16b-4335-8457-55be82150c48",
       "name": "Switch"
@@ -135,8 +135,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.1,
       "position": [
-        -980,
-        740
+        -700,
+        1030
       ],
       "id": "be09beac-2169-4fce-b995-9658395a4f5d",
       "name": "Merge"
@@ -157,8 +157,8 @@
       "type": "n8n-nodes-base.formTrigger",
       "typeVersion": 2.2,
       "position": [
-        -2300,
-        860
+        -2020,
+        1155
       ],
       "id": "bf3fa8a7-f023-4731-9290-e9cf949bc973",
       "name": "Package Eingabe",
@@ -199,8 +199,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -2080,
-        860
+        -1800,
+        1155
       ],
       "id": "32a6d775-4174-4efc-8132-d7cef9d11398",
       "name": "Konstanten"
@@ -208,14 +208,14 @@
     {
       "parameters": {
         "operation": "write",
-        "fileName": "={{ $('Konstanten').first().json.out_dir }}/docu.md ",
+        "fileName": "={{ $('Konstanten').first().json.out_dir }}/docu.md",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        -180,
-        780
+        116,
+        1080
       ],
       "id": "abc11ea9-1c7c-4344-9fbe-65a416084c58",
       "name": "MarkDown als Datei speichern"
@@ -227,8 +227,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        60,
-        780
+        336,
+        1080
       ],
       "id": "d01c8b7e-1040-4c8c-8fd1-66966e33b672",
       "name": "Pandoc ausführen"
@@ -260,8 +260,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -760,
-        40
+        -480,
+        330
       ],
       "id": "1a7e37e6-8eb6-4af5-8dd8-def4a730d12e",
       "name": "Klasse abrufen",
@@ -299,8 +299,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -760,
-        440
+        -480,
+        730
       ],
       "id": "6f3d7928-e70a-4e3b-9bb0-62993c90b4bf",
       "name": "Tabelle abrufen",
@@ -318,8 +318,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1200,
-        1140
+        -920,
+        1430
       ],
       "id": "b344d876-e9a7-46bc-91df-da0777064916",
       "name": "Inhaltsverzeichnis"
@@ -337,8 +337,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        -460,
-        600
+        -172,
+        900
       ],
       "id": "b9a0c1a5-aa8c-44ff-a800-ba1418a9b667",
       "name": "OpenAI Chat Model",
@@ -362,8 +362,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        -460,
-        200
+        -172,
+        500
       ],
       "id": "f29ab7f6-a3c7-4fb6-9f49-ca8576e6565b",
       "name": "OpenAI Chat Model1",
@@ -377,14 +377,14 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=You are an SAP ABAP Expert.\n\nYour task is to write technical documentation in Markdown for the given ABAP class.\n\n**General Rules:**  \n1. Describe the code in clear, human-readable language.  \n2. Do not invent any logic or parameters not present in the code.  \n3. Follow the output structure as shown in the example.\n5. Do not add additional headlines\n4. If you are unsure about any aspect of the code or if information is missing, ask for clarification.\n\n**SAP-specific Aspects:**    \n- Explicitly mention the use of SAP exception classes (e.g., `CX_*`).  \n- If the code accesses SAP tables, transactions, or uses SAP-specific logic, mention this in the documentation.\n\n**Class Header:**\n1. Describe the general use case of the class in 1-5 sentences, depending on its complexity.\n2. Create a class Diagramm with the \"mermaid\" syntax\n- Remove the slashes (\"/\") from the namespace and connect the namespace and object name with a hyphen. Example: /DMO/TEST → DMO-TEST\n- The technical name (with \"/\") should be shown in quotes in the diagram.\n- Static methods are marked with a $ suffix.\n- Abstract methods are marked with a * suffix.\n- Add the parent class and all used interfaces as \"class\".\n- Always place <<interface>> inside the curly brackets of the interface declaration.\n\n**Mermaid Example:** \n```mermaid  \n\nclassDiagram\n\n    class SWAN-CL_CUSTOM_CLASS[\"/SWAN/CL_CUSTOM_CLASS\"]{    \n\n      +CONSTRUCTOR(iv_event: TPDA_EVENT_TYPE, iv_index: SYTABIX)  \n\n      +SET_DURATION() /SWAN/DE_BASE_APPL_DURATION  \n\n      -GS_APPL: /SWAN/S_BASE_APPL  \n\n      +EXAMPLE_STATIC() string$  \n\n      +EXAMPLE_ABSTRACT() string*  \n\n    }\n\n    class SWAN-IF_CUSTOM[\"/SWAN/IF_CUSTOM\"]{\n      <<interface>>\n    }\n\n    class SWAN-IF_BASE[\"/SWAN/IF_BASE\"]{\n      <<interface>>\n    }\n\n    class SWAN-CL_BASE[\"/SWAN/CL_BASE\"]\n\n    SWAN-CL_BASE <|-- SWAN-CL_CUSTOM_CLASS  \n\n    SWAN-CL_CUSTOM_CLASS ..|> SWAN-IF_BASE  \n\n    SWAN-CL_CUSTOM_CLASS ..|> SWAN-IF_CUSTOM   \n```\n\n**Methods:**  \n- List every method.  \n- For each method, specify its visibility (public, protected, private) and whether it is static or abstract.  \n- Describe the logic of each method in 1-5 sentences, depending on its complexity.  \n- For each method, list all parameters, sorted by IMPORTING, CHANGING, EXPORTING, RETURNING, EXCEPTIONS.  \n- For each parameter, provide a one-sentence description.  \n- If a method has no parameters or exceptions, state this explicitly.\n- If a method has no parameters or exceptions, please state explicitly:    \n_\"This method has no parameters or exceptions.\"_\n\n**Formatting:**  \n- Use Markdown headings for class and method names.  \n- Start with headline level \"##\" instead of \"#\".\n- Use tables for parameter lists with the following columns: Name | Data type | Parameter type | Description.\n- Ensure consistent indentation and spacing for readability.\n\n**Example:**\n## ZCL_PDF_PRINTER\n\nThis class handles the creation and printing of PDF forms for user messages. It manages the generation, storage, and dispatch of PDF documents to network printers based on user-specific settings. The class ensures that all printer-related exceptions are handled according to SAP standards.\n\n<placeholder for mermaid>\n\n---\n\n### METHOD_PRINT_PDF\n\n**Visibility:** public, static\n\nPrints the provided user message to a PDF form. The form is saved on a network storage and sent to the user's default printer. If no printer is found, an exception is raised.\n\n\n| Name           | Data type      | Parameter type | Description                                              |  \n|----------------|----------------|----------------|----------------------------------------------------------|  \n| iv_message     | STRING         | IMPORTING      | The message text to be printed on the PDF form.          |  \n| iv_user_id     | STRING         | IMPORTING      | The user ID for whom the PDF should be generated.        |  \n| ev_pdf_path    | STRING         | EXPORTING      | The file path where the generated PDF is stored.         |  \n| cx_no_printer  | CX_NO_PRINTER  | EXCEPTION      | Raised if no printer is assigned to the specified user.  |\n\n---\n\n### METHOD_GET_PRINTER_FOR_USER\n\n**Visibility:** protected\n\nDetermines the default printer for a given user by reading the user settings from the custom table ZUSER_PRINTER. Returns the printer name or raises an exception if not found.\n\n| Name           | Data type      | Parameter type | Description                                              |\n|----------------|----------------|----------------|----------------------------------------------------------|  \n| iv_user_id     | STRING         | IMPORTING      | The user ID whose printer settings are to be retrieved.  |  \n| rv_printer     | STRING         | RETURNING      | The determined printer name for the user.                |  \n| cx_no_printer  | CX_NO_PRINTER  | EXCEPTION      | Raised if no printer is assigned to the specified user.  |\n\n---\n\n### METHOD_GENERATE_PDF\n\n**Visibility:** protected\n\nGenerates a PDF document from the provided message text. The PDF is created in memory and prepared for storage.\n\n| Name           | Data type      | Parameter type | Description                                              |  \n|----------------|----------------|----------------|----------------------------------------------------------|  \n| iv_message     | STRING         | IMPORTING      | The message text to be included in the PDF.              |  \n| rv_pdf_data    | XSTRING        | RETURNING      | The generated PDF data as a binary string.               |\n\n---\n\n**ABAP class information:**\n- Name: {{ $('Switch').item.json.obj_name }}\n- Description: {{ $('Switch').item.json.description }}\n- Package: {{ $('Switch').item.json.devclass }}\n\n**ABAP Class Code:**  \n{{ $json.data }}\n\n\n",
+        "text": "=You are an SAP ABAP Expert.\n\nYour task is to write technical documentation in Markdown for the given ABAP class.\n\n**General Rules:**  \n1. Describe the code in clear, human-readable language.  \n2. Do not invent any logic or parameters not present in the code.  \n3. Follow the output structure as shown in the example.\n5. Do not add additional headlines\n4. If you are unsure about any aspect of the code or if information is missing, ask for clarification.\n\n**SAP-specific Aspects:**    \n- Explicitly mention the use of SAP exception classes (e.g., `CX_*`).  \n- If the code accesses SAP tables, transactions, or uses SAP-specific logic, mention this in the documentation.\n\n**Class Header:**\n1. Describe the general use case of the class in 1-5 sentences, depending on its complexity.\n2. Create a class Diagramm with the \"mermaid\" syntax\n- Remove the slashes (\"/\") from the namespace and connect the namespace and object name with a hyphen. Example: /DMO/TEST → DMO-TEST (do this just for the mermaid diagramm part).\n- The technical name (with \"/\") should be shown in quotes in the diagram.\n- Static methods are marked with a $ suffix.\n- Abstract methods are marked with a * suffix.\n- Add the parent class and all used interfaces as \"class\".\n- Always place <<interface>> inside the curly brackets of the interface declaration.\n- Do not show method parameters inside the class diagram\n\n**Mermaid Example:** \n```mermaid  \n\nclassDiagram\n\n    class SWAN-CL_CUSTOM_CLASS[\"/SWAN/CL_CUSTOM_CLASS\"]{    \n\n      +CONSTRUCTOR()  \n\n      +SET_DURATION()  \n\n      -GS_APPL()\n\n      +EXAMPLE_STATIC()\n\n      +EXAMPLE_ABSTRACT() \n\n    }\n\n    class SWAN-IF_CUSTOM[\"/SWAN/IF_CUSTOM\"]{\n      <<interface>>\n    }\n\n    class SWAN-IF_BASE[\"/SWAN/IF_BASE\"]{\n      <<interface>>\n    }\n\n    class SWAN-CL_BASE[\"/SWAN/CL_BASE\"]\n\n    SWAN-CL_BASE <|-- SWAN-CL_CUSTOM_CLASS  \n\n    SWAN-CL_CUSTOM_CLASS ..|> SWAN-IF_BASE  \n\n    SWAN-CL_CUSTOM_CLASS ..|> SWAN-IF_CUSTOM   \n```\n\n**Methods:**  \n- List every method.  \n- For each method, specify its visibility (public, protected, private) and whether it is static or abstract.  \n- Describe the logic of each method in 1-5 sentences, depending on its complexity.  \n- For each method, list all parameters, sorted by IMPORTING, CHANGING, EXPORTING, RETURNING, EXCEPTIONS.  \n- For each parameter, provide a one-sentence description.  \n- If a method has no parameters or exceptions, state this explicitly.\n- If a method has no parameters or exceptions, please state explicitly:    \n_\"This method has no parameters or exceptions.\"_\n\n**Formatting:**  \n- Use Markdown headings for class and method names.  \n- Start with headline level \"##\" instead of \"#\".\n- Use tables for parameter lists with the following columns: Name | Data type | Parameter type | Description.\n- Ensure consistent indentation and spacing for readability.\n\n**Example:**\n## ZCL_PDF_PRINTER\n\nThis class handles the creation and printing of PDF forms for user messages. It manages the generation, storage, and dispatch of PDF documents to network printers based on user-specific settings. The class ensures that all printer-related exceptions are handled according to SAP standards.\n\n<placeholder for mermaid>\n\n---\n\n### METHOD_PRINT_PDF\n\n**Visibility:** public, static\n\nPrints the provided user message to a PDF form. The form is saved on a network storage and sent to the user's default printer. If no printer is found, an exception is raised.\n\n\n| Name           | Data type      | Parameter type | Description                                              |  \n|----------------|----------------|----------------|----------------------------------------------------------|  \n| iv_message     | STRING         | IMPORTING      | The message text to be printed on the PDF form.          |  \n| iv_user_id     | STRING         | IMPORTING      | The user ID for whom the PDF should be generated.        |  \n| ev_pdf_path    | STRING         | EXPORTING      | The file path where the generated PDF is stored.         |  \n| cx_no_printer  | CX_NO_PRINTER  | EXCEPTION      | Raised if no printer is assigned to the specified user.  |\n\n---\n\n### METHOD_GET_PRINTER_FOR_USER\n\n**Visibility:** protected\n\nDetermines the default printer for a given user by reading the user settings from the custom table ZUSER_PRINTER. Returns the printer name or raises an exception if not found.\n\n| Name           | Data type      | Parameter type | Description                                              |\n|----------------|----------------|----------------|----------------------------------------------------------|  \n| iv_user_id     | STRING         | IMPORTING      | The user ID whose printer settings are to be retrieved.  |  \n| rv_printer     | STRING         | RETURNING      | The determined printer name for the user.                |  \n| cx_no_printer  | CX_NO_PRINTER  | EXCEPTION      | Raised if no printer is assigned to the specified user.  |\n\n---\n\n### METHOD_GENERATE_PDF\n\n**Visibility:** protected\n\nGenerates a PDF document from the provided message text. The PDF is created in memory and prepared for storage.\n\n| Name           | Data type      | Parameter type | Description                                              |  \n|----------------|----------------|----------------|----------------------------------------------------------|  \n| iv_message     | STRING         | IMPORTING      | The message text to be included in the PDF.              |  \n| rv_pdf_data    | XSTRING        | RETURNING      | The generated PDF data as a binary string.               |\n\n---\n\n**ABAP class information:**\n- Name: {{ $('Switch').item.json.obj_name }}\n- Description: {{ $('Switch').item.json.description }}\n- Package: {{ $('Switch').item.json.devclass }}\n\n**ABAP Class Code:**  \n{{ $json.data }}",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.9,
       "position": [
-        -540,
-        -20
+        -260,
+        280
       ],
       "id": "d0a2bd07-e379-4066-bf55-0ab4fcf5aba7",
       "name": "Klasse dokumentieren"
@@ -398,8 +398,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.9,
       "position": [
-        -540,
-        380
+        -260,
+        680
       ],
       "id": "47057c9e-d290-4ef5-a868-8ca1126afae3",
       "name": "Dictionary dokumentieren"
@@ -427,8 +427,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -1860,
-        860
+        -1580,
+        1155
       ],
       "id": "f31fa241-f39f-40ed-9ecc-fc80167f20de",
       "name": "Paket Inhalte abrufen",
@@ -451,8 +451,8 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -460,
-        780
+        -182,
+        1080
       ],
       "id": "1117edf7-8643-404a-b8c5-36ec9ba47397",
       "name": "Convert to File"
@@ -464,8 +464,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -760,
-        740
+        -480,
+        1030
       ],
       "id": "1675dd36-8f76-4c5f-b50a-0a4eebad53bd",
       "name": "Dokumente zusammenführen"
@@ -705,7 +705,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "48f6d07b-7a37-4065-a0e4-eb5cf79a5864",
+  "versionId": "d3e2d06b-8c0e-4584-a0a4-80d5ab3392cc",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "d001d888587c12598bcad36f4814fd4d54ee56706efffe84b627565d74da4072"
