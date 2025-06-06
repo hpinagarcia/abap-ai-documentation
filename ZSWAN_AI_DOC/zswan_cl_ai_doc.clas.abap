@@ -195,6 +195,12 @@ CLASS zswan_cl_ai_doc IMPLEMENTATION.
             WHERE rollname = @iv_obj_name
             AND ddlanguage = @sy-langu.
 
+      WHEN c_object_type_table_type.
+        SELECT SINGLE ddtext
+                    FROM dd02t
+                    INTO @rv_description
+                    WHERE tabname = @iv_obj_name
+                    AND ddlanguage = @sy-langu.
     ENDCASE.
 
   ENDMETHOD.
