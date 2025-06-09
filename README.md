@@ -90,6 +90,8 @@ Um dieses Projekt zu verwenden, benötigst du [abapGit](https://abapgit.org/). F
 
 Stelle anschließend sicher, dass das Paket `ZSWAN_AI_DOC` vorhanden und der Service `ZSWAN_AI_DOC` aktiv ist. 
 
+**Achtung:** Sollte ein Fehler erscheinen das der Service (Binding bzw. Definition) nicht importiert werden konnte, so muss dieser ggf. manuell angelegt werden. 
+
 ## ⚙️ 2. Workflow importieren
 
 Im `workflows` Verzeichnis findest du den Vorgestellten Workflow. 
