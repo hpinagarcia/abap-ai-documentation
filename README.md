@@ -2,6 +2,8 @@
 
 Willkommen! In diesem Repository findest du alle Informationen und Ressourcen, um ABAP-Pakete mithilfe von KI automatisiert zu dokumentieren. 🧠📘
 
+Sieh Dir hier nochmal den Vortrag von der ABAPConf an: https://www.youtube.com/live/SncN0yl2l-0?si=eCaPiLhIoyy6-zAL&t=17700.
+
 ![Screenshot](./screenshot.png)
 
 ## 🚀 1. Tech-Stack installieren
